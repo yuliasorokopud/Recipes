@@ -11,8 +11,13 @@ import Foundation
 
 struct Details: Decodable {
 
-    var readyInMinutes: Int
-    var extendedIngredients: [Ingredient]
+    var time: Int
+    var ingredients: [Ingredient]
     var instructions: Instructions
     
+    enum CodingKeys: String, CodingKey{
+        case time = "readyInMinutes"
+        case ingredients = "extendedIngredients"
+        case instructions = "analyzedInstructions"
+    }
 }

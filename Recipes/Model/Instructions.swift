@@ -7,17 +7,11 @@
 
 import Foundation
 
-struct Instructions: Identifiable, Decodable {
-    var id: Int
+struct Instructions: Decodable {
     var steps: [Step]
     
 }
 
-
-struct StepResponse: Decodable {
-    var steps: [Step]
-    
-}
 
 struct Step: Identifiable, Decodable {
     var id: Int

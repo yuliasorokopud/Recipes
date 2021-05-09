@@ -14,5 +14,4 @@ struct Recipe: Identifiable, Decodable {
     var image: String
     var missedIngredients: [Ingredient]
 
-    
 }

@@ -7,13 +7,21 @@
 
 import Foundation
 
-struct Ingredient: Identifiable, Decodable {
+struct Ingredient: Identifiable, Decodable, Hashable {
     
     var id: Int
+    var name: String
     var original: String
     var amount: Double
     var unit: String
-
+    
+//    enum CodingKeys: String, CodingKey{
+//        case id
+//        case name
+//        case original
+//        case amount
+//        case unit
+//    }
     
 }
 

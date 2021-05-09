@@ -42,28 +42,28 @@ struct Search: View {
             .padding(.trailing)
             
             IngredientList(ingredients: $ingredients)
-
-                
+            
+            
             HStack(alignment: .center, spacing: 10){
-                    ClearButtonView(title: "Clear", color: Color(.systemTeal))
-                        .onTapGesture {
-                            ingredients.removeAll()
-                            input = ""
-                        }
+                ClearButtonView(title: "Clear", color: Color(.systemTeal))
+                    .onTapGesture {
+                        ingredients.removeAll()
+                        input = ""
+                    }
                 
+                
+                
+                NavigationLink(destination: RecipesResultsListView(ingredients: ingredients)){
                     ClearButtonView(title: "Search", color: Color(.systemGreen))
-                        .onTapGesture {
-                            
-                        }
-                        
+                    
+                }
             }
-        
         }
         .padding()
         .navigationTitle("Recipe Search")
         
     }
-
+    
     
     func addIngredient() {
         let answer = input.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
