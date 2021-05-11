@@ -8,10 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    //    init() {
-    //        UINavigationBar.appearance().backgroundColor = .systemGreen
-    //        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-    //    }
     
     @State var isLaunching = true
     
@@ -24,15 +20,15 @@ struct ContentView: View {
             .ignoresSafeArea()
             .navigationViewStyle(StackNavigationViewStyle())
             
-//            LaunchView()
-//                .opacity(isLaunching ? 1 : 0)
-//                .onAppear {
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//                        withAnimation() {
-//                            self.isLaunching = false
-//                        }
-//                    }
-//                }
+            LaunchView()
+                .opacity(isLaunching ? 1 : 0)
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        withAnimation() {
+                            self.isLaunching = false
+                        }
+                    }
+                }
         }
     }
 }

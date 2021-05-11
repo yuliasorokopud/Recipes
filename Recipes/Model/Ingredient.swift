@@ -17,14 +17,3 @@ struct Ingredient: Identifiable, Decodable, Hashable {
     
     
 }
-
-
-//"id": 10014355,
-//        "original": "1 cup green tea",
-//        "originalName": "green tea",
-//        "name": "tea",
-//        "nameClean": "green tea",
-//        "amount": 1.0,
-//        "unit": "cup",
-//        "unitShort": "cup",
-//        "unitLong": "cup",

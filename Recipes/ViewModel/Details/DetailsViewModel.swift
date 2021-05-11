@@ -40,12 +40,6 @@ class DetailsViewModel: ObservableObject {
                 }
             }
         }
-        
-        print(" RECIPE NAME: \(self.recipe.title)")
-        print(" RECIPE ID: \(self.recipe.id)")
-//        print(" TIME: \(self.time)")
-        print(" INGREDIENTS: \(self.ingredients)")
-//        print(" INSTRUCTIONS: \(self.instructions)\n\n")
     }
     
     //add ingredient to the ingredient view model list

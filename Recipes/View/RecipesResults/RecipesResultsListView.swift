@@ -19,7 +19,7 @@ struct RecipesResultsListView: View {
     }
         
     var body: some View {
-//        if !viewModel.recipeList.isEmpty {
+        if !viewModel.recipeList.isEmpty {
         GeometryReader { geometry in
 
                 VStack(alignment: .center, spacing: 0) {
@@ -38,7 +38,9 @@ struct RecipesResultsListView: View {
         }
         .foregroundColor(.black)
         .ignoresSafeArea(.all, edges: .bottom)
-        
+        } else {
+            ErrorView()
+        }
     }
 }
 
