@@ -14,8 +14,6 @@ class RecipeListViewModel: ObservableObject {
     
     //MARK: - initializer
     init(ingredients: [String]){
-        //TODO: load recipes
-        print("WE ARE HERE")
         loadRecipes(ingredients: ingredients)
     }
     
@@ -23,7 +21,6 @@ class RecipeListViewModel: ObservableObject {
     public func loadRecipes(ingredients: [String]){
         dataModel.loadRecipes(ingredients: ingredients) { recipes in
             recipes.forEach { self.appendRecipe(recipe: $0)
-                print("added \($0.title)")
             }
         }
         

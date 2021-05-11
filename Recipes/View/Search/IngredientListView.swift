@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct IngredientList: View {
+struct IngredientListView: View {
     @Binding var ingredients: [String]
     var body: some View {
         if !ingredients.isEmpty{
@@ -54,6 +54,6 @@ struct IngredientList: View {
 
 struct IngredientList_Previews: PreviewProvider {
     static var previews: some View {
-        IngredientList(ingredients: .constant(["avocado", "potato", "tomato"]))
+        IngredientListView(ingredients: .constant(["avocado", "potato", "tomato"]))
     }
 }

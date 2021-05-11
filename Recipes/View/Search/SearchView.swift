@@ -9,7 +9,8 @@ import SwiftUI
 
 struct Search: View {
     @State private var input = ""
-    @State private var ingredients = [String]()
+//    @State private var ingredients = [String]()
+    @State private var ingredients = ["tomato"]
     
     
     init(){
@@ -41,11 +42,11 @@ struct Search: View {
             }
             .padding(.trailing)
             
-            IngredientList(ingredients: $ingredients)
+            IngredientListView(ingredients: $ingredients)
             
             
             HStack(alignment: .center, spacing: 10){
-                ClearButtonView(title: "Clear", color: Color(.systemTeal))
+                ButtonView(title: "Clear", color: Color(.systemTeal))
                     .onTapGesture {
                         ingredients.removeAll()
                         input = ""
@@ -54,7 +55,7 @@ struct Search: View {
                 
                 
                 NavigationLink(destination: RecipesResultsListView(ingredients: ingredients)){
-                    ClearButtonView(title: "Search", color: Color(.systemGreen))
+                    ButtonView(title: "Search", color: Color(.systemGreen))
                     
                 }
             }
@@ -66,14 +67,14 @@ struct Search: View {
     
     
     func addIngredient() {
-        let answer = input.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        let ingredient = input.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
         
-        guard !answer.isEmpty && !ingredients.contains(answer.lowercased()) else {
+        guard !ingredient.isEmpty && !ingredients.contains(ingredient.lowercased()) else {
             //TODO: add alert?
             return
         }
         
-        ingredients.insert(answer, at: 0)
+        ingredients.insert(ingredient, at: 0)
         input = ""
         
     }

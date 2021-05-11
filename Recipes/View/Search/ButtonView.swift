@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ClearButtonView: View {
+struct ButtonView: View {
     var title: String
     var color: Color
     
@@ -24,11 +24,12 @@ struct ClearButtonView: View {
         
         
         
+        
     }
 }
 
 struct ClearButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        ClearButtonView(title: "Search", color: Color(.magenta))
+        ButtonView(title: "Search", color: Color(.magenta))
     }
 }

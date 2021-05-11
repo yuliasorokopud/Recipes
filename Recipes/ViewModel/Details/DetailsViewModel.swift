@@ -13,33 +13,48 @@ import SwiftUI
 
 class DetailsViewModel: ObservableObject {
     
-    var time: String
-    var ingredients = [IngredientViewModel]()
-    var instructions = [StepViewModel]()
+    @Published var time = String()
+    @Published var ingredients = [IngredientViewModel]()
+//    @Published var instructions = [Step]()
     
-    init (details: Details) {
-        self.time =  String(format: "%g", details.time)
-        self.instructions = toInstructionsViewModel(instructions: details.instructions.steps)
-        self.ingredients = toIngredientViewModel(ingredients: details.ingredients)
+    var recipe: RecipeViewModel
+    private let dataModel:DataModel = DataModel()
+    
+    
+    
+    init (recipe: RecipeViewModel) {
+        self.recipe = recipe
+        loadDetails(recipeId: recipe.id)
+    }
+    
+    
+    //fetch details of current recipe
+    public func loadDetails(recipeId: Int){
+           dataModel.loadRecipeInfo(id: recipeId){details in
+            DispatchQueue.main.async {
+                self.time = "\(details.time)"
+//                self.instructions = details.instructions
+                
+                details.ingredients.forEach {
+                    self.appendIngredients(ingredient: $0)
+                }
+            }
+        }
+        
+        print(" RECIPE NAME: \(self.recipe.title)")
+        print(" RECIPE ID: \(self.recipe.id)")
+//        print(" TIME: \(self.time)")
+        print(" INGREDIENTS: \(self.ingredients)")
+//        print(" INSTRUCTIONS: \(self.instructions)\n\n")
+    }
+    
+    //add ingredient to the ingredient view model list
+    private func appendIngredients(ingredient: Ingredient){
+        let ingredientViewModel = IngredientViewModel(ingredient: ingredient)
+        DispatchQueue.main.async {
+            self.ingredients.append(ingredientViewModel)
+        }
     }
    
-    
-    //TODO: clean
-    public func toIngredientViewModel(ingredients: [Ingredient]) -> [IngredientViewModel]{
-        var ingredientViewModel = [IngredientViewModel]()
-        ingredients.forEach{ingredient in
-            ingredientViewModel.append(IngredientViewModel(ingredient: ingredient))
-            }
-        return ingredientViewModel
-    }
-    
-    public func toInstructionsViewModel(instructions: [Step]) -> [StepViewModel]{
-        var instructionsViewModel = [StepViewModel]()
-        instructions.forEach{instruction in
-            instructionsViewModel.append(StepViewModel(step: instruction))
-            }
-        return instructionsViewModel
-    }
 }
-
 

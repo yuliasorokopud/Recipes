@@ -22,16 +22,17 @@ struct ContentView: View {
                 Search()
             }
             .ignoresSafeArea()
+            .navigationViewStyle(StackNavigationViewStyle())
             
-            LaunchView()
-                .opacity(isLaunching ? 1 : 0)
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        withAnimation() {
-                            self.isLaunching = false
-                        }
-                    }
-                }
+//            LaunchView()
+//                .opacity(isLaunching ? 1 : 0)
+//                .onAppear {
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                        withAnimation() {
+//                            self.isLaunching = false
+//                        }
+//                    }
+//                }
         }
     }
 }

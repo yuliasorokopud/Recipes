@@ -30,11 +30,10 @@ struct RecipeCardView: View {
             
             
             TryRecipeButton()
+            
+           
         }
         .padding(12)
-        
-        
-        
         .background(Color.white)
         .cornerRadius(15)
         .shadow(color: Color.black.opacity(0.2), radius: 7, x: 0, y: 2)

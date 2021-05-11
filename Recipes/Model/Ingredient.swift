@@ -15,13 +15,6 @@ struct Ingredient: Identifiable, Decodable, Hashable {
     var amount: Double
     var unit: String
     
-//    enum CodingKeys: String, CodingKey{
-//        case id
-//        case name
-//        case original
-//        case amount
-//        case unit
-//    }
     
 }
 

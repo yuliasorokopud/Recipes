@@ -10,6 +10,9 @@ import Foundation
 struct Instructions: Decodable {
     var steps: [Step]
     
+    enum CodingKeys: String, CodingKey{
+        case steps = "analyzedInstructions"
+    }
 }
 
 

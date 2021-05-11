@@ -12,6 +12,7 @@ class DataModel {
     
     //MARK:  Properties
     private var dataTask: URLSessionDataTask?
+    var counter = 0
     
     
     //MARK: - fetching
@@ -23,7 +24,6 @@ class DataModel {
             return
         }
         
-        print("ingredientsString: \(ingredientsString)")
         dataTask?.cancel()
         
         guard let url = buildSearchUrl(ingredients: ingredientsString) else {
@@ -32,11 +32,9 @@ class DataModel {
             return
         }
         
-        print("url: \(url)")
         
         dataTask = URLSession.shared.dataTask(with: url) { data, _, _ in
             guard let data = data else {
-                print("Data error")
                 completion([])
                 return
             }
@@ -60,14 +58,14 @@ class DataModel {
             return
         }
         
-        dataTask = URLSession.shared.dataTask(with: url) { data, _, _ in
+        dataTask = URLSession.shared.dataTask(with: url) { data, _, error in
             guard let data = data else {
                 return
             }
             
-            
             if let response = try? JSONDecoder().decode(Details.self, from: data) {
                 completion(response)
+            } else {
             }
         }
         
@@ -82,7 +80,7 @@ class DataModel {
     private func buildSearchUrl (ingredients: String) -> URL? {
         let queryItems = [
             URLQueryItem(name: "ingredients", value: "\(ingredients)"),
-            URLQueryItem(name: "apiKey", value: "c1a17020549e40c69a2715cafb3e6421")
+            URLQueryItem(name: "apiKey", value: "d99016218c4242bba3927c475191b2f9")
         ]
         var compnents = URLComponents(string: "https://api.spoonacular.com/recipes/findByIngredients?")
         compnents?.queryItems = queryItems
@@ -92,25 +90,22 @@ class DataModel {
     
     private func buildIdUrl (id: Int) -> URL? {
         let queryItems = [
-            URLQueryItem(name: "apiKey", value: "c1a17020549e40c69a2715cafb3e6421")
+            URLQueryItem(name: "apiKey", value: "d99016218c4242bba3927c475191b2f9")
         ]
-        var compnents = URLComponents(string: "https://api.spoonacular.com/recipes/\(id)/information")
+        var compnents = URLComponents(string: "https://api.spoonacular.com/recipes/\(id)/information?")
         compnents?.queryItems = queryItems
         
         return compnents?.url
     }
     
+    
     func convertToString(_ ingredients: [String]) -> String{
         if ingredients.isEmpty {
-          return ""
+            return ""
         }
         var ingredientsString = ""
         for i in ingredients {
-            if (ingredientsString==""){
-                ingredientsString += "\(i)"
-            }else{
-          ingredientsString += ",+\(i)"
-            }
+            ingredientsString += ingredientsString=="" ? "\(i)" : ",+\(i)"
         }
         
         //takes care of spaces
@@ -123,7 +118,7 @@ class DataModel {
 //https://api.spoonacular.com/recipes/findByIngredients?ingredients=apples,+flour,+sugar&number=2
 
 //details
-//https://api.spoonacular.com/recipes/id/information?includeNutrition=false
+//https://api.spoonacular.com/recipes/id/information&apiKey=173d1e55ebd3439797b6b57f7570975e
 
 //instructions
 //https://api.spoonacular.com/recipes/id/analyzedInstructions
