@@ -65,10 +65,9 @@ struct Search: View {
                                 }),.cancel()])
                 }
                 .sheet(isPresented: $showSheet) {
-                    ImagePicker(selectedImage: self.$image, imageSelected: self.$imageSelected, sourceType: $sourceType)
-                        .onDisappear{
-                            if imageSelected{
-                                performImageClassification()}
+                    ImagePicker(result: $predictedFood, selectedImage: $image, sourceType: $sourceType)
+                        .onDisappear(){
+                            addIngredient()
                         }
                 }
             }
@@ -129,28 +128,6 @@ struct Search: View {
             }
             ingredients.insert(predictedFood, at: 0)
             predictedFood = ""
-        }
-    }
-    
-    private func performImageClassification(){
-        do{
-            let config = MLModelConfiguration()
-            let model = try IngredientsClassifier(configuration: config)
-            
-            
-            guard let resizedImage = image.resizeTo(size: CGSize(width: 229, height: 229)),
-                  let buffer = resizedImage.toBuffer() else { return }
-            
-            let output = try? model.prediction(image: buffer)
-            
-            if let output = output {
-                // show only one result with the highest confidence level
-                self.predictedFood = output.classLabel
-                addIngredient()
-            }
-        }
-        catch {
-            print(error.localizedDescription)
         }
         
         self.showSheet = false
