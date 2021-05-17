@@ -15,13 +15,11 @@ struct Search: View {
     
     
     // properties to work with image classification
-    @State private var image: UIImage = UIImage()
     @State private var predictedFood = ""
     @State private var sourceType: UIImagePickerController.SourceType = .camera
     
     @State private var showSheet = false
     @State private var showActionSheet = false
-    @State private var imageSelected = false
     
     
     
@@ -65,7 +63,7 @@ struct Search: View {
                                 }),.cancel()])
                 }
                 .sheet(isPresented: $showSheet) {
-                    ImagePicker(result: $predictedFood, selectedImage: $image, sourceType: $sourceType)
+                    ImagePicker(result: $predictedFood, sourceType: $sourceType)
                         .onDisappear(){
                             addIngredient()
                         }
@@ -85,7 +83,6 @@ struct Search: View {
                 }
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .padding()
-                .foregroundColor(.white)
                 .background(Color(.systemTeal))
                 .cornerRadius(40)
                 
@@ -97,7 +94,6 @@ struct Search: View {
                     }
                     .frame(minWidth: 0, maxWidth: .infinity)
                     .padding()
-                    .foregroundColor(.white)
                     .background(Color(.systemGreen))
                     .cornerRadius(40)
                     .disabled(!ingredients.isEmpty ? true : false)
@@ -105,6 +101,7 @@ struct Search: View {
                 
                
             }
+            .foregroundColor(.white)
         }
         .padding()
         .navigationTitle("Recipe Search")
@@ -113,22 +110,19 @@ struct Search: View {
     
     
     func addIngredient() {
+        var ingredient = ""
         if predictedFood.isEmpty {
-            let ingredient = input.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+            ingredient = input.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+            input = ""
+        } else {
+            ingredient = predictedFood.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+            predictedFood = ""
+        }
             
             guard !ingredient.isEmpty && !ingredients.contains(ingredient.lowercased()) else {
                 return
             }
-            
             ingredients.insert(ingredient, at: 0)
-            input = ""
-        } else {
-            guard !predictedFood.isEmpty && !ingredients.contains(predictedFood.lowercased()) else {
-                return
-            }
-            ingredients.insert(predictedFood, at: 0)
-            predictedFood = ""
-        }
         
         self.showSheet = false
     }

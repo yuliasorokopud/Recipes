@@ -11,19 +11,22 @@ struct DetailsInfoView: View {
     @Binding var title: String
     @Binding var time: String
     var body: some View {
+        
         Text(title)
             .font(.largeTitle)
             .fontWeight(.heavy)
         
-        HStack{
-            Image(systemName: "clock")
-        Text("\(time) minutes")
-            .font(.title3)
-            Spacer()
+        if !time.isEmpty {
+            HStack{
+                Image(systemName: "clock")
+                Text("\(time) minutes")
+                    .font(.title3)
+                Spacer()
+                
+            }
+            .foregroundColor(Color(.brown))
+            .padding(.bottom)
         }
-        .foregroundColor(Color("my-pink"))
-        .padding(.bottom)
-        
     }
 }
 

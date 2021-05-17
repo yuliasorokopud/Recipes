@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct RecipesResultsListView: View {
-    @ObservedObject var  viewModel: RecipeListViewModel
-   
+    @ObservedObject private var viewModel: RecipeListViewModel
     init(ingredients: [String]){
         self.viewModel = RecipeListViewModel(ingredients: ingredients)
         UITableView.appearance().showsVerticalScrollIndicator = false

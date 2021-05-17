@@ -15,7 +15,7 @@ struct LaunchView: View {
                 Image("launch")
                     .resizable()
                     .frame(width: 200, height: 200, alignment: .center)
-                    .foregroundColor(.white)
+                    .foregroundColor(.black)
                 Text("Recipes")
                     .font(.largeTitle)
                     .fontWeight(.heavy)

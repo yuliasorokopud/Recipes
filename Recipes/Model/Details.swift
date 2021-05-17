@@ -7,8 +7,6 @@
 
 import Foundation
 
-//Get Recipe Information
-
 struct Details: Decodable {
 
     var time: Int

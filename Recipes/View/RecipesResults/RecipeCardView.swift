@@ -16,7 +16,7 @@ struct RecipeCardView: View {
             
             RemoteImage(url: recipe.image)
                 .scaledToFill()
-                .frame(minWidth: nil, idealWidth: nil, maxWidth: UIScreen.main.bounds.width, minHeight: nil, idealHeight: nil, maxHeight: 300, alignment: .center)
+                .frame( maxWidth: UIScreen.main.bounds.width-30, alignment: .center)
                 .clipped()
             
             RecipeInfo(title: $recipe.title, ingredients: $recipe.missedIngredients)

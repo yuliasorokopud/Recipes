@@ -10,7 +10,7 @@ import SwiftUI
 struct RecipeIngredientsView: View {
     @Binding var ingredients: [IngredientViewModel]
     var body: some View {
-        
+        if !ingredients.isEmpty {
         Text("Ingredients:")
             .font(.title)
             .fontWeight(.bold)
@@ -26,19 +26,20 @@ struct RecipeIngredientsView: View {
                 Text("\(i.amount)")
                     .font(.title3)
                     .padding(.leading)
-                    .foregroundColor(Color("my-pink"))
+                    .foregroundColor(Color(.brown))
                 Text("\(i.unit)")
                     .font(.title3)
                 
             }
                 Rectangle()
-                    .foregroundColor(Color("my-pink").opacity(0.3))
+                    .foregroundColor(Color(.brown).opacity(0.3))
                     .frame(width: nil, height: 1, alignment: .center)
                     .padding([.leading, .trailing], -12)
                     .padding(.horizontal)
             }.padding(.bottom)
         }
         Spacer()
+        }
     }
 }
 

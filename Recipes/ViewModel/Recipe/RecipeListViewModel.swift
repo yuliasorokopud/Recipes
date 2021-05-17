@@ -20,7 +20,7 @@ class RecipeListViewModel: ObservableObject {
     //fetch recipes with needed ingredients
     public func loadRecipes(ingredients: [String]){
         dataModel.loadRecipes(ingredients: ingredients) { recipes in
-            recipes.forEach { self.appendRecipe(recipe: $0)
+            recipes?.forEach { self.appendRecipe(recipe: $0)
             }
         }
         
