@@ -16,15 +16,15 @@ struct RecipesResultsListView: View {
         UITableViewCell.appearance().backgroundColor = .clear
         
     }
-        
+    
     var body: some View {
         if !viewModel.recipeList.isEmpty {
-        GeometryReader { geometry in
-
+            GeometryReader { geometry in
+                
                 VStack(alignment: .center, spacing: 0) {
                     
                     List(viewModel.recipeList) { recipe in
-
+                        
                         RecipeCardView(recipe: recipe)
                         
                         NavigationLink(destination: RecipeDetailsView(details: DetailsViewModel(recipe: recipe))){
@@ -34,9 +34,9 @@ struct RecipesResultsListView: View {
                     
                 }
                 
-        }
-        .foregroundColor(.black)
-        .ignoresSafeArea(.all, edges: .bottom)
+            }
+            .foregroundColor(.black)
+            .ignoresSafeArea(.all, edges: .bottom)
         } else {
             ErrorView()
         }

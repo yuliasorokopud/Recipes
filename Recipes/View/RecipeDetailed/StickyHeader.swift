@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StickyHeader<Content: View>: View {
-
+    
     var minHeight: CGFloat
     var content: Content
     

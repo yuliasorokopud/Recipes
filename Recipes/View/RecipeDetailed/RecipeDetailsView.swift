@@ -14,7 +14,7 @@ struct RecipeDetailsView: View {
     var body: some View{
         ScrollView(.vertical, showsIndicators: false) {
             StickyHeader {
-            RemoteImage(url: details.recipe.image)
+                RemoteImage(url: details.recipe.image)
                     .aspectRatio(contentMode: .fill)
             }
             
@@ -25,19 +25,22 @@ struct RecipeDetailsView: View {
                 
                 VStack(alignment: .leading) {
                     
-                    DetailsInfoView(title: $details.recipe.title, time: $details.time)
                     
-                    Divider()
-                        .foregroundColor(.gray)
-                        .frame(width: nil, height: 1, alignment: .center)
-                        .padding([.leading, .trailing], -12)
-                        .padding(.bottom)
-                    
-                    
-                    RecipeIngredientsView(ingredients: $details.ingredients)
+                    if !details.ingredients.isEmpty{
                         
-                    
-                    
+                        DetailsInfoView(title: $details.recipe.title, time: $details.time)
+                        Divider()
+                            .foregroundColor(.gray)
+                            .frame(width: nil, height: 1, alignment: .center)
+                            .padding([.leading, .trailing], -12)
+                            .padding(.bottom)
+                        
+                        
+                        RecipeIngredientsView(ingredients: $details.ingredients)
+                        RecipeInstructionsView(instructions: $details.instructions)
+                    } else {
+                        ErrorCantReachDataView()
+                    }
                 }
                 .padding()
                 .padding(.top)
@@ -47,7 +50,7 @@ struct RecipeDetailsView: View {
             
         }
         
-    
+        
     }
 }
 

@@ -11,8 +11,9 @@ import Foundation
 class DetailsViewModel: ObservableObject {
     
     @Published var time = String()
+    @Published var instructions = String()
     @Published var ingredients = [IngredientViewModel]()
-//    @Published var instructions = [Step]()
+    
     
     var recipe: RecipeViewModel
     private let dataModel:DataModel = DataModel()
@@ -25,12 +26,12 @@ class DetailsViewModel: ObservableObject {
     }
     
     
-    //fetch details of current recipe
+    //fetch details of recipe by id
     public func loadDetails(recipeId: Int){
-           dataModel.loadRecipeInfo(id: recipeId){details in
+        dataModel.loadRecipeInfo(id: recipeId){details in
             DispatchQueue.main.async {
                 self.time = "\(details.time)"
-//                self.instructions = details.instructions
+                self.instructions = details.instructions
                 
                 details.ingredients.forEach {
                     self.appendIngredients(ingredient: $0)
@@ -39,13 +40,14 @@ class DetailsViewModel: ObservableObject {
         }
     }
     
-    //add ingredient to the ingredient view model list
+    //add ingredient to the list
     private func appendIngredients(ingredient: Ingredient){
         let ingredientViewModel = IngredientViewModel(ingredient: ingredient)
         DispatchQueue.main.async {
             self.ingredients.append(ingredientViewModel)
         }
     }
-   
+    
+    
 }
 

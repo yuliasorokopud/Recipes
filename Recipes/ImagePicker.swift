@@ -99,8 +99,6 @@ final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigation
                     print("not sure")
                 } else {
                     self.parent.result = String(results[0].identifier)
-                    print(String(format: "%@ %.1f%%", results[0].identifier, results[0].confidence * 100))
-                    print("self.parent.result : \(self.parent.result)")
                 }
             } else if let error = error {
                 self.parent.result = "error: \(error.localizedDescription)"

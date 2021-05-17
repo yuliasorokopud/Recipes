@@ -10,6 +10,7 @@ import SwiftUI
 struct DetailsInfoView: View {
     @Binding var title: String
     @Binding var time: String
+    
     var body: some View {
         
         Text(title)

@@ -48,7 +48,6 @@ struct IngredientListView: View {
     
     func delete(at offsets: IndexSet) {
         ingredients.remove(atOffsets: offsets)
-        print(ingredients)
     }
 }
 

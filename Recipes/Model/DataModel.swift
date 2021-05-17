@@ -15,25 +15,24 @@ class DataModel {
     //MARK:  Properties
     private var task: Cancellable? = nil
     private let baseUrl = "https://api.spoonacular.com/recipes/"
-    private let API_KEY = "d99016218c4242bba3927c475191b2f9"
+    private let API_KEY = "173d1e55ebd3439797b6b57f7570975e"
     
     
     //MARK: - fetching
     func loadRecipes(ingredients: [String], completion: @escaping (([Recipe]?) -> Void)){
-      
+        
         let ingredientsString = convertToString(ingredients)
         if ingredientsString == "" {
             print("Empty ingredients string")
             return
         }
         self.task = AF.request(baseUrl + "findByIngredients?",
-                               method: .get,
                                parameters: ["ingredients": ingredientsString,
                                             "apiKey": API_KEY])
             .publishDecodable(type: [Recipe].self)
             .sink(receiveCompletion: {completion in
                 switch completion{
-                    case .finished:
+                case .finished:
                     ()
                 case .failure(let error):
                     print(error.localizedDescription)
@@ -46,18 +45,17 @@ class DataModel {
                     print(error.localizedDescription)
                 }
             })
-     }
+    }
     
     
     func loadRecipeInfo(id: Int, completion: @escaping((Details)-> Void)){
-            
+        
         self.task = AF.request(baseUrl + "\(id)/information?",
-                               method: .get,
                                parameters: ["apiKey": API_KEY])
             .publishDecodable(type: Details.self)
             .sink(receiveCompletion: {completion in
                 switch completion{
-                    case .finished:
+                case .finished:
                     ()
                 case .failure(let error):
                     print(error.localizedDescription)
@@ -70,7 +68,7 @@ class DataModel {
                     print(error.localizedDescription)
                 }
             })
-     }
+    }
     
     
     

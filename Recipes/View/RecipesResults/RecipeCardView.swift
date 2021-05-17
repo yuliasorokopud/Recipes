@@ -31,7 +31,7 @@ struct RecipeCardView: View {
             
             TryRecipeButton()
             
-           
+            
         }
         .padding(12)
         .background(Color.white)

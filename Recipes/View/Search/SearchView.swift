@@ -14,7 +14,7 @@ struct Search: View {
     @State private var ingredients = [String]()
     
     
-    // properties to work with image classification
+    //// properties to work with image classification
     @State private var predictedFood = ""
     @State private var sourceType: UIImagePickerController.SourceType = .camera
     
@@ -99,7 +99,7 @@ struct Search: View {
                     .disabled(!ingredients.isEmpty ? true : false)
                 }
                 
-               
+                
             }
             .foregroundColor(.white)
         }
@@ -118,11 +118,11 @@ struct Search: View {
             ingredient = predictedFood.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
             predictedFood = ""
         }
-            
-            guard !ingredient.isEmpty && !ingredients.contains(ingredient.lowercased()) else {
-                return
-            }
-            ingredients.insert(ingredient, at: 0)
+        
+        guard !ingredient.isEmpty && !ingredients.contains(ingredient.lowercased()) else {
+            return
+        }
+        ingredients.insert(ingredient, at: 0)
         
         self.showSheet = false
     }
