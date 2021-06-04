@@ -13,18 +13,18 @@ struct RecipeInfo: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(title)
-                .font(Font.custom("HelveticaNeue-Bold", size: 25))
+                .font(.system(size: 25))
                 .fontWeight(Font.Weight.heavy)
             
             if (!ingredients.isEmpty){
                 HStack(alignment: .top){
                     Text("With additional:")
-                        .font(Font.custom("HelveticaNeue-Bold", size: 20))
+                        .font(.system(size: 20))
                         .foregroundColor(Color.gray)
                     VStack(alignment: .leading){
                         ForEach (ingredients, id: \.self){ ingredient in
                             Text("\(ingredient.name)")
-                                .font(Font.custom("HelveticaNeue-Bold", size: 18))
+                                .font(.system(size: 18))
                                 .foregroundColor(Color.gray)
                         }
                     }

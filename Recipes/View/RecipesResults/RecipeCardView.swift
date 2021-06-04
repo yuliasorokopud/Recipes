@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct RecipeCardView: View {
-    @ObservedObject var recipe: RecipeViewModel
+    @Binding var recipe: RecipeViewModel
     
     
     var body: some View {

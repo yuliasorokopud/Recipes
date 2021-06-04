@@ -15,7 +15,7 @@ class DataModel {
     //MARK:  Properties
     private var task: Cancellable? = nil
     private let baseUrl = "https://api.spoonacular.com/recipes/"
-    private let API_KEY = "173d1e55ebd3439797b6b57f7570975e"
+    private let API_KEY = ""
     
     
     //MARK: - fetching

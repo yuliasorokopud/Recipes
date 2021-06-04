@@ -12,7 +12,7 @@ struct InfoView: View {
         HStack(alignment: .center, spacing: 10) {
             Image("recipe").resizable().frame(width: 80, height: 80, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             
-            Text("Enter the name or take a photo of an ingredient and find the most tasty recipes to cook")
+            Text("Enter the name or take a photo of an ingredient and find the tastiest recipes to cook")
         }    }
 }
 

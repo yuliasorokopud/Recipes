@@ -5,7 +5,6 @@
 //  Created by Yulia on 12.05.2021.
 //
 
-//import Foundation
 import SwiftUI
 import CoreML
 import Vision
@@ -93,10 +92,8 @@ final class Coordinator: NSObject, UIImagePickerControllerDelegate, UINavigation
             if let results = request.results as? [VNClassificationObservation] {
                 if results.isEmpty {
                     self.parent.result = "nothing found"
-                    print("nothing found")
                 } else if results[0].confidence < 0.8 {
                     self.parent.result = "" //not sure
-                    print("not sure")
                 } else {
                     self.parent.result = String(results[0].identifier)
                 }

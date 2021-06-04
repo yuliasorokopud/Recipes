@@ -24,8 +24,8 @@ struct RecipesResultsListView: View {
                 VStack(alignment: .center, spacing: 0) {
                     
                     List(viewModel.recipeList) { recipe in
-                        
-                        RecipeCardView(recipe: recipe)
+                        let index = viewModel.recipeList.firstIndex(where: { $0.id == recipe.id })!
+                        RecipeCardView(recipe: $viewModel.recipeList[index])
                         
                         NavigationLink(destination: RecipeDetailsView(details: DetailsViewModel(recipe: recipe))){
                         }.buttonStyle(PlainButtonStyle()).frame(width:0).opacity(0)
@@ -37,9 +37,9 @@ struct RecipesResultsListView: View {
             }
             .foregroundColor(.black)
             .ignoresSafeArea(.all, edges: .bottom)
-        } else {
-            ErrorView()
-        }
+            } else {
+                NoRecipesView()
+            }
     }
 }
 

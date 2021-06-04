@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct ErrorView: View {
+struct NoRecipesView: View {
     var body: some View {
-        VStack{
-            Text("Oops, something went wrong")
+        VStack(alignment: .center){
+            Text("Oops, no recipes")
                 .font(.title)
                 .fontWeight(.bold)
                 .padding()
@@ -26,6 +26,6 @@ struct ErrorView: View {
 
 struct ErrorView_Previews: PreviewProvider {
     static var previews: some View {
-        ErrorView()
+        NoRecipesView()
     }
 }
